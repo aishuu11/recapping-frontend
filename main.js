@@ -43,12 +43,12 @@
 // we are going to create a mini atm project 
 
 
-let pin = 1234
+const pin = 1234
 let attempt = 3
 let balance = 1000
 let login = false
 
-while (attempt >0 & login!= true ){
+while (attempt >0 && !login ){
     let user_pin = Number(prompt("What is your pin number? "))
     if (user_pin != pin)
     {
@@ -67,46 +67,86 @@ while (attempt >0 & login!= true ){
 
 function menu(){
 
-    console.log(
-        "1. View balance,2. Deposit money, 3.Withdraw money"
-    )
-    
-    let action = Number(prompt("what do u wish to do" ))
+    let action = Number(prompt("1. View balance\n2. Deposit money\n3.Withdraw money\n4.Exit"))
     return action
 
 }
+
 
 function user_action(){
     let option = menu()
 
     if (option == 1){
-        console.log(`This is your balance $${balance}`)}
+        console.log(`This is your balance $${balance}`)
+        user_action()
+
+        }
+        
     
     else if(option == 2 ){
-        let deposit_amount= Number(prompt("how much do you want to depost? "))
-        balance = balance + deposit_amount
-        console.log(`You now have $${balance} in your account`)
+        let deposit_amount= Number(prompt("how much do you want to deposit? "))
+
+        if (isNaN(deposit_amount) || deposit_amount <= 0) {
+            console.log("Invalid deposit");
+            user_action();
+        } 
+        else {
+            balance += deposit_amount
+            console.log(`This is your balance $${balance}`)
+            user_action();
+        }
+
     }
-    else {
+    else if (option == 3){
         let withdraw_amt = Number(prompt("How much do u want to withdraw? "))
-        if (withdraw_amt < 0 || withdraw_amt > balance){
-            console.log("Insufficient funds in bank ")
+
+
+        if (isNaN(withdraw_amt)|| withdraw_amt<=0){
+            console.log("Invalid amount")
+            user_action()
+
+        }
+
+        else if (withdraw_amt > balance){
+            console.log("Insufficient funds")
+            user_action()
+
         }
         else{
             balance = balance - withdraw_amt
             console.log(`This is your balance $${balance}`)
+            user_action()
         }
+    
     }   
+
+    else if (option == 4){
+        ans = confirm("Do you really want to exit? ")
+        if (ans){
+            console.log("You have exited")
+        }
+        else{
+            menu()
+            user_action()
+        }
+        
+    }
     }
 
-
-if (login) {
+function login_status(){
+    if (login) {
     console.log(`You have logged in already and your balance is $ ${balance}`)
     user_action()
+    
 }
-else{
-    console.log('You have run out of attempts, try again later')
+    else{
+        console.log('You have run out of attempts, try again later')
 }
+}
+
+
+login_status()
+
 
 
 
