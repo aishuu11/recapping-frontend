@@ -1,0 +1,24 @@
+{
+  "name": "frontend-recap",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aishuu11/recapping-frontend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/aishuu11/recapping-frontend/issues"
+  },
+  "homepage": "https://github.com/aishuu11/recapping-frontend#readme",
+  "devDependencies": {
+    "mocha": "^12.0.3"
+  }
+}

@@ -68,7 +68,13 @@ while (attempt >0 && !login ){
 function menu(){
 
     let action = Number(prompt("1. View balance\n2. Deposit money\n3.Withdraw money\n4.Exit"))
-    return action
+    if(action !== 1 && action !== 2 && action !== 3 && action !== 4) {
+        console.log("Invalid option")
+        return menu 
+    } 
+    else{
+        return action
+    }
 
 }
 
@@ -126,7 +132,6 @@ function user_action(){
             console.log("You have exited")
         }
         else{
-            menu()
             user_action()
         }
         
